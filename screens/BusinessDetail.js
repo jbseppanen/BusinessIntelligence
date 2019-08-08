@@ -1,8 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 
 export default class BusinessDetail extends React.Component {
   render() {
-    return <View />;
+    const { navigation } = this.props;
+    const itemId = navigation.getParam('id', 'NO-ID');
+    const name = navigation.getParam('name', 'unknown');
+
+    return <Text>{name}</Text>
+    // return <View />;
   }
 }
