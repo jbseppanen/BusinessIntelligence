@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, Text, StyleSheet, View} from 'react-native';
+import { FlatList, Text, StyleSheet, View, Button } from 'react-native';
 
 export default class Businesses extends React.Component {
   render() {
@@ -25,7 +25,10 @@ export default class Businesses extends React.Component {
           renderItem={({ item }) =>
             <View style={styles.flatview}>
               <Text style={styles.name}>{item.name}</Text>
-              {/* <Text style={styles.secondary}>{item.id}</Text> */}
+              <Button
+                title="Go to Details"
+                onPress={() => this.props.navigation.navigate('Profile', item)}
+              />
             </View>
           }
           keyExtractor={item => item.id.toString()}
