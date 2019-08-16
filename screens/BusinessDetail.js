@@ -12,11 +12,10 @@ export default class BusinessDetail extends React.Component {
     return <View style={styles.container}>
       <Text style={styles.name}>{name}</Text>
       <Text style={styles.address}>{location.address}</Text>
-      <Text>{location.city}</Text>
-      <Text>{location.country}</Text>
-      <View style={{ flex: 2 }}>
+      <Text style={styles.address} >{location.city} {location.country}</Text>
+      <View style={{ flex: 1 }}>
         <RNChartView
-          style={{ flex: 2 }}
+          style={{ flex: 1 }}
           data={{ axisLabel: "Revenue", dataList: revenue, description: "Months" }}
         />
       </View>
@@ -28,15 +27,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 0,
-    justifyContent: 'center',
-    // backgroundColor: '#F5FCFF',
   },
 
   name: {
+    textAlign: 'center',
     fontFamily: 'Verdana',
-    fontSize: 20
+    fontSize: 40
   },
   address: {
+    textAlign: 'center',
     fontFamily: 'Helvitica',
     fontSize: 16
   }
