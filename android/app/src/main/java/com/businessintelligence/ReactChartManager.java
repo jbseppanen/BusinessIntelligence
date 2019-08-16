@@ -43,39 +43,46 @@ public class ReactChartManager extends SimpleViewManager<LineChart> {
         ArrayList<String> xLabels = new ArrayList<>();
         ReadableArray dataList = map.getArray("dataList");
         if (dataList != null) {
-            ArrayList<Entry> entries = new ArrayList<>(dataList.size());
-            int j = 0;
+            ArrayList<Entry> entries = new ArrayList<>();
+            int entryIndex = 0;
             for (int i = (dataList.size() - 1); i >= 0; i--) {
 
                 ReadableMap item = dataList.getMap(i);
                 assert item != null;
-                entries.add(new Entry((j), (float) item.getDouble("value")));
+                entries.add(new Entry((entryIndex), (float) item.getDouble("value")));
+                entryIndex++;
 
                 //Extract date and split off time component.
                 String dateString = item.getString("date").split(" ")[0];
                 String[] dateArray = dateString.split("-");
-
+                //Store X axis labels in an array.
                 xLabels.add(String.format(Locale.getDefault(), "%s-%s", dateArray[1], dateArray[0]));
-                j++;
             }
 
             ValueFormatter formatter = new ValueFormatter() {
                 @Override
                 public String getAxisLabel(float value, AxisBase axis) {
-                    String[] arr = xLabels.toArray(new String[xLabels.size()]);
+                    String[] arr = xLabels.toArray(new String[0]);
                     return arr[(int) value];
                 }
             };
 
+            //Set chart data.
             LineDataSet dataSet = new LineDataSet(entries, map.getString("axisLabel"));
             LineData lineData = new LineData(dataSet);
+            chart.setData(lineData);
+
+            //Set description of line data.
             Description description = new Description();
             description.setText(map.getString("description"));
+            chart.setDescription(description);
+
+            //Set X axis labels.
             XAxis xAxis = chart.getXAxis();
             xAxis.setGranularity(1f);
             xAxis.setValueFormatter(formatter);
-            chart.setDescription(description);
-            chart.setData(lineData);
+
+            //Tell it to update.
             chart.invalidate();
         }
     }
