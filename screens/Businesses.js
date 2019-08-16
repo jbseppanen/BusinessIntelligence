@@ -4,7 +4,6 @@ import { FlatList, Text, StyleSheet, View, Button } from 'react-native';
 export default class Businesses extends React.Component {
   render() {
     const jData = require("../data");
-    let companyList = jData.map(a => a.name)
 
     return (
       <View style={styles.container} >
@@ -35,24 +34,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginTop: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
   h2text: {
+    textAlign: "center",
+    alignSelf: 'stretch',
     marginTop: 10,
     fontFamily: 'Helvetica',
     fontSize: 36,
     fontWeight: 'bold',
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
   },
   flatview: {
-    justifyContent: 'center',
+    flex: 1,
+    marginStart: 8,
+    marginEnd: 8,
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "space-between",
     paddingTop: 30,
     borderRadius: 2,
   },
   name: {
+    textAlign: "center",
     fontFamily: 'Verdana',
-    fontSize: 18
+    fontSize: 24
   },
   secondary: {
     color: 'red'
