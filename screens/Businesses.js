@@ -5,14 +5,6 @@ export default class Businesses extends React.Component {
   render() {
     const jData = require("../data");
     let companyList = jData.map(a => a.name)
-    // return <Text>{companyList[0]}</Text>
-    // return <FlatList
-    //   data={jData}
-    //   // keyExtractor = {item=>item.name}
-    //   renderItem={({ item }) => <Text>{item.name}</Text>}
-    // />
-    // return <FlatList />
-
 
     return (
       <View style={styles.container} >
@@ -26,7 +18,7 @@ export default class Businesses extends React.Component {
             <View style={styles.flatview}>
               <Text style={styles.name}>{item.name}</Text>
               <Button
-                title="Go to Details"
+                title="See Details"
                 onPress={() => this.props.navigation.navigate('Profile', item)}
               />
             </View>
@@ -65,5 +57,4 @@ const styles = StyleSheet.create({
   secondary: {
     color: 'red'
   }
-
 });
